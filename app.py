@@ -14,7 +14,8 @@ stores = [
     }
 ]
 
-# POST /store data: {name:} 
+
+# POST /store data: {name:}
 @app.route('/store', methods=['POST'])
 def create_store():
     request_data = request.get_json()
@@ -32,6 +33,7 @@ def get_store(name):
     # Iterate over stores
     # If the store name matches, return it
     # If none match, return an error message
+    pass
 
 
 # GET /store 
