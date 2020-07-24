@@ -9,10 +9,9 @@ items = []
 
 class Item(Resource):
     def get(self, name):
-        for item in items:
-            if item['name'] == name:
-                return item
-        return {'item': None}, 404  # 404 status not found for server
+        item = next(filter(lambda x: x['name'] == name, items), None)
+        return {'item': item}, 200 if item is not None else 404
+        # 200 - status ok, 404 - status not found for server
 
     def post(self, name):
         data = request.get_json()
