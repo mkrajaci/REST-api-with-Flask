@@ -13,7 +13,7 @@ items = []
 
 
 class Item(Resource):
-    @jwt_required
+    @jwt_required()
     def get(self, name):
         item = next(filter(lambda x: x['name'] == name, items), None)
         return {'item': item}, 200 if item else 404
@@ -26,6 +26,11 @@ class Item(Resource):
         item = {'name': name, 'price': data['price']}
         items.append(item)
         return item, 201    # 201 status created for server
+
+    def delete(self, name):
+        global items
+        items = list(filter(lambda x: x['name'] != name, items))
+        return {'message': 'Items deleted'}
 
 
 class ItemList(Resource):
