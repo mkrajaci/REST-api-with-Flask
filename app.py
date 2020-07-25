@@ -13,7 +13,7 @@ items = []
 
 
 class Item(Resource):
-    @jwt_required()
+    #@jwt_required()     # for authorisation purpose this decorator can be put on every method
     def get(self, name):
         item = next(filter(lambda x: x['name'] == name, items), None)
         return {'item': item}, 200 if item else 404
@@ -31,6 +31,16 @@ class Item(Resource):
         global items
         items = list(filter(lambda x: x['name'] != name, items))
         return {'message': 'Items deleted'}
+    
+    def put(self, name):
+        data = request.get_json()
+        item = next(filter(lambda x: x['name'] == name, items), None)
+        if item:
+            item.update(data)
+        else:
+            item = {'name': name, 'price': data['price']}
+            items.append(item)
+        return item
 
 
 class ItemList(Resource):
