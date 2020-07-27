@@ -1,6 +1,6 @@
 # REST-api-with-Flask
-REST api with Flask
+Simple REST api with Flask
 
-This is the learning repo for wast API calls.
+This simple REST API flask app is for opensource use. Be my guest and clone it and use it for your new simple REST calls. 
 
-It will have more details about soon.
+In the comments, you can find decorator for authorisation, and you can use it on an endpoint of your choice.
